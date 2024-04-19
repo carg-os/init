@@ -1,3 +1,0 @@
-[submodule "libc"]
-	path = libc
-	url = https://github.com/carg-os/libc.git

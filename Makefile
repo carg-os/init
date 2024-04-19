@@ -22,15 +22,18 @@ DEPS = $(patsubst %.o,%.d,$(OBJS))
 
 CFLAGS = -std=gnu2x -I libc/include -I include/ -MMD -ffreestanding -mcmodel=medany
 
+libc:
+	@git clone https://github.com/carg-os/libc.git
+
 $(BUILDDIR)/%.S.o: src/%.S | $(BUILDDIR)
 	@printf "  CCAS\t$(@F)\n"
 	@$(CC) $< -c -o $@ $(CFLAGS)
 
-$(BUILDDIR)/%.c.o: src/%.c | $(BUILDDIR)
+$(BUILDDIR)/%.c.o: src/%.c | libc $(BUILDDIR)
 	@printf "  CC\t$(@F)\n"
 	@$(CC) $< -c -o $@ $(CFLAGS)
 
-$(BUILDDIR)/libc.a: FORCE | $(BUILDDIR)
+$(BUILDDIR)/libc.a: FORCE | libc $(BUILDDIR)
 	@$(MAKE) -C libc BUILDDIR=$(BUILDDIR)
 
 $(BUILDDIR)/init.o: $(OBJS) $(BUILDDIR)/libc.a | $(BUILDDIR)

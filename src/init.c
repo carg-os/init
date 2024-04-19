@@ -1,3 +1,4 @@
+#include <config.h>
 #include <errno.h>
 #include <shell.h>
 #include <stdio.h>
@@ -6,6 +7,9 @@
 #include <sys/wait.h>
 
 void init(void) {
+    printf("Booting up CargOS v%d.%d.%d...\n", VERSION_MAJOR, VERSION_MINOR,
+           VERSION_PATCH);
+
     char *argv[] = {"shell", nullptr};
     proc(cmd_shell, argv);
 

@@ -20,7 +20,8 @@ OBJS = $(patsubst src/%.S,$(BUILDDIR)/%.S.o,$(SRCS))
 OBJS := $(patsubst src/%.c,$(BUILDDIR)/%.c.o,$(OBJS))
 DEPS = $(patsubst %.o,%.d,$(OBJS))
 
-CFLAGS = -std=gnu2x -I libc/include -I include/ -MMD -ffreestanding -mcmodel=medany
+CFLAGS = -std=gnu2x -I libc/include -I include/ -MMD -ffreestanding \
+         -mcmodel=medany -O3 -fdata-sections -ffunction-sections -flto
 
 libc:
 	@git clone https://github.com/carg-os/libc.git

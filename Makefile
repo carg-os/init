@@ -2,9 +2,7 @@ BUILDDIR = $(CURDIR)/build
 
 all: githooks $(BUILDDIR)/init.a
 
-FORCE:
-
-githooks: | hooks
+githooks:
 	@git config core.hooksPath hooks/
 
 $(BUILDDIR):
@@ -20,29 +18,19 @@ OBJS = $(patsubst src/%.S,$(BUILDDIR)/%.S.o,$(SRCS))
 OBJS := $(patsubst src/%.c,$(BUILDDIR)/%.c.o,$(OBJS))
 DEPS = $(patsubst %.o,%.d,$(OBJS))
 
-CFLAGS = -std=gnu2x -I libc/include -I include/ -MMD -ffreestanding \
+CFLAGS = -std=gnu2x -I $(LIBC_INCLUDE) -I include/ -MMD -ffreestanding \
          -mcmodel=medany -O3 -fdata-sections -ffunction-sections -flto
-
-libc:
-	@git clone https://github.com/carg-os/libc.git
 
 $(BUILDDIR)/%.S.o: src/%.S | $(BUILDDIR)
 	@printf "  CCAS\t$(@F)\n"
 	@$(CC) $< -c -o $@ $(CFLAGS)
 
-$(BUILDDIR)/%.c.o: src/%.c | libc $(BUILDDIR)
+$(BUILDDIR)/%.c.o: src/%.c | $(BUILDDIR)
 	@printf "  CC\t$(@F)\n"
 	@$(CC) $< -c -o $@ $(CFLAGS)
 
-$(BUILDDIR)/libc.a: FORCE | libc $(BUILDDIR)
-	@$(MAKE) -C libc BUILDDIR=$(BUILDDIR)
-
-$(BUILDDIR)/init.o: $(OBJS) $(BUILDDIR)/libc.a | $(BUILDDIR)
-	@printf "  CCLD\t$(@F)\n"
-	@$(CC) $^ -r -o $@ -Wl,--whole-archive
-
-$(BUILDDIR)/%.a: $(BUILDDIR)/%.o | $(BUILDDIR)
+$(BUILDDIR)/init.a: $(OBJS) | $(BUILDDIR)
 	@printf "  AR\t$(@F)\n"
-	@$(AR) cr $@ $<
+	@$(AR) crs $@ $(OBJS)
 
 -include $(DEPS)

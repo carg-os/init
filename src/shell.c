@@ -5,8 +5,10 @@
 #include <stdio.h>
 #include <tok.h>
 
+int cmd_motd(int argc, char *argv[]);
+
 int cmd_shell(int argc, char *argv[]) {
-    print_motd();
+    cmd_motd(0, nullptr);
 
     while (true) {
         printf("$ ");

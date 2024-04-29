@@ -13,17 +13,24 @@ int cmd_echo(int argc, char *argv[]);
 int cmd_exit(int argc, char *argv[]);
 int cmd_getpid(int argc, char *argv[]);
 int cmd_help(int argc, char *argv[]);
+int cmd_motd(int argc, char *argv[]);
 int cmd_reboot(int argc, char *argv[]);
 int cmd_shell(int argc, char *argv[]);
 int cmd_sleep(int argc, char *argv[]);
 int cmd_shutdown(int argc, char *argv[]);
 
 cmd_t CMDS[] = {
-    {"?", cmd_help, false},        {"clear", cmd_clear, false},
-    {"echo", cmd_echo, false},     {"exit", cmd_exit, true},
-    {"getpid", cmd_getpid, true},  {"help", cmd_help, false},
-    {"reboot", cmd_reboot, false}, {"shell", cmd_shell, false},
-    {"sleep", cmd_sleep, false},   {"shutdown", cmd_shutdown, false},
+    {"?", cmd_help, false},
+    {"clear", cmd_clear, false},
+    {"echo", cmd_echo, false},
+    {"exit", cmd_exit, true},
+    {"getpid", cmd_getpid, true},
+    {"help", cmd_help, false},
+    {"motd", cmd_motd, true},
+    {"reboot", cmd_reboot, false},
+    {"shell", cmd_shell, false},
+    {"sleep", cmd_sleep, false},
+    {"shutdown", cmd_shutdown, false},
 };
 static size_t NR_CMDS = sizeof(CMDS) / sizeof(CMDS[0]);
 

@@ -1,6 +1,6 @@
 #include <unistd.h>
 
-void print_motd(void) {
+int cmd_motd(int argc, char *argv[]) {
     const char *boot_msg =
         // clang-format off
 "                                                                          \n"
@@ -78,4 +78,5 @@ void print_motd(void) {
             pos = 0;
         }
     }
+    return 0;
 }

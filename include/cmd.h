@@ -1,5 +1,4 @@
-#ifndef CMD_H_
-#define CMD_H_
+#pragma once
 
 typedef struct {
     const char *name;
@@ -10,5 +9,3 @@ typedef struct {
 extern cmd_t cmds[];
 
 int cmd_exec(int argc, char *argv[], bool async);
-
-#endif // CMD_H_

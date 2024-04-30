@@ -1,7 +1,4 @@
-#ifndef EXIT_STATUS_H_
-#define EXIT_STATUS_H_
+#pragma once
 
 #define EXIT_STATUS_GENERAL_ERR 1
 #define EXIT_STATUS_UNKNOWN_CMD 127
-
-#endif // EXIT_STATUS_H_

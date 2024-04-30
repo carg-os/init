@@ -1,5 +1,4 @@
-#ifndef TOK_H_
-#define TOK_H_
+#pragma once
 
 #include <stddef.h>
 
@@ -18,5 +17,3 @@ typedef struct {
 } tok_t;
 
 size_t tokenize(char *cmd_buf, tok_t *tok_buf);
-
-#endif // TOK_H_

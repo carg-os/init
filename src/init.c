@@ -14,7 +14,7 @@ void init(void) {
     proc(cmd_shell, argv);
 
     while (true) {
-        if (wait(nullptr) < 0 && errno == -ECHILD) {
+        if (wait(nullptr) < 0 && errno == ECHILD) {
             printf("No process is available; init terminated\n");
             exit(EXIT_SUCCESS);
         }

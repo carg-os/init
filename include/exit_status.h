@@ -1,4 +1,0 @@
-#pragma once
-
-#define EXIT_STATUS_GENERAL_ERR 1
-#define EXIT_STATUS_UNKNOWN_CMD 127

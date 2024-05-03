@@ -1,10 +1,10 @@
 #include <cmd.h>
 
 #include <exit_status.h>
+#include <proc.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <sys/proc.h>
 #include <sys/wait.h>
 
 int cmd_help(int argc, char *argv[]);
@@ -20,12 +20,12 @@ int cmd_sleep(int argc, char *argv[]);
 int cmd_shutdown(int argc, char *argv[]);
 
 cmd_t CMDS[] = {
-    {"?", cmd_help, false},
+    {"?", cmd_help, true},
     {"clear", cmd_clear, false},
     {"echo", cmd_echo, false},
     {"exit", cmd_exit, true},
     {"getpid", cmd_getpid, true},
-    {"help", cmd_help, false},
+    {"help", cmd_help, true},
     {"motd", cmd_motd, true},
     {"reboot", cmd_reboot, false},
     {"shell", cmd_shell, false},

@@ -12,5 +12,5 @@ int cmd_help(int argc, char *argv[]) {
     printf("shell    create another instance of this shell\n");
     printf("sleep    sleep for a certain number of seconds\n");
     printf("shutdown shutdown the system\n");
-    exit(0);
+    exit(EXIT_SUCCESS);
 }

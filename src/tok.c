@@ -4,14 +4,14 @@
 #include <string.h>
 
 size_t tokenize(char *cmd_buf, tok_t *tok_buf) {
-    while (isspace(*cmd_buf)) {
+    while (isspace((int) *cmd_buf)) {
         ++cmd_buf;
     }
 
     size_t top = 0;
     while (*cmd_buf) {
         char *start = cmd_buf;
-        while (!isspace(*cmd_buf) && *cmd_buf) {
+        while (!isspace((int) *cmd_buf) && *cmd_buf) {
             cmd_buf++;
         }
         size_t size = cmd_buf - start;
@@ -30,7 +30,7 @@ size_t tokenize(char *cmd_buf, tok_t *tok_buf) {
         tok_buf[top].size = size;
         top++;
 
-        while (isspace(*cmd_buf)) {
+        while (isspace((int) *cmd_buf)) {
             *cmd_buf = '\0';
             cmd_buf++;
         }

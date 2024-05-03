@@ -1,5 +1,3 @@
-#include <shell.h>
-
 #include <cmd.h>
 #include <config.h>
 #include <stdio.h>

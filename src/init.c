@@ -1,6 +1,7 @@
 #include <config.h>
 #include <errno.h>
 #include <proc.h>
+#include <reboot.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/wait.h>
@@ -17,7 +18,7 @@ void init(void) {
     while (true) {
         if (wait(nullptr) < 0 && errno == ECHILD) {
             printf("No process is available; init terminated\n");
-            exit(EXIT_SUCCESS);
+            reboot(REBOOT_SHUTDOWN);
         }
     }
 }

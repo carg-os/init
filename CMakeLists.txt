@@ -4,6 +4,7 @@ project(init C)
 add_library(init
     src/init.c
     src/main.c
+    src/motd.c
 )
 
 set_property(TARGET init PROPERTY C_STANDARD 23)

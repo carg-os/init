@@ -8,5 +8,13 @@ add_library(init
 )
 
 set_property(TARGET init PROPERTY C_STANDARD 23)
-target_compile_options(init PRIVATE -ffreestanding -mcmodel=medany -Wall)
-target_include_directories(init PRIVATE ${LIBC_INCLUDE} ${LIBLUA_INCLUDE} include)
+target_compile_options(init PRIVATE
+    -ffreestanding
+    -mcmodel=medany
+    -Wall
+)
+target_include_directories(init PRIVATE
+    ${LIBC_INCLUDE}
+    ${LUA_INCLUDE}
+    include
+)

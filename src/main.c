@@ -1,10 +1,10 @@
+#include <cmd.h>
 #include <lauxlib.h>
 #include <lua.h>
 #include <lualib.h>
+#include <motd.h>
 #include <stdio.h>
 #include <string.h>
-
-void print_motd(void);
 
 bool report(lua_State *l, int status) {
     if (status == LUA_OK)
@@ -20,6 +20,8 @@ int main(void) {
 
     lua_State *l = luaL_newstate();
     luaL_openlibs(l);
+
+    register_cmds(l);
 
     while (true) {
         printf("\x1B[0;36m>\x1B[0;0m>\x1B[0;33m>\x1B[0;0m ");

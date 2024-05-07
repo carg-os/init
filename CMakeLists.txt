@@ -2,6 +2,14 @@ cmake_minimum_required(VERSION 3.29)
 project(init C)
 
 add_library(init
+    src/cmd.c
+    src/cmds/clear.c
+    src/cmds/exit.c
+    src/cmds/getpid.c
+    src/cmds/help.c
+    src/cmds/motd.c
+    src/cmds/reboot.c
+    src/cmds/shutdown.c
     src/init.c
     src/main.c
     src/motd.c

@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int cmd_motd(int argc, char *argv[]) {
+void print_motd(void) {
     const char *boot_msg =
         // clang-format off
 "                                                                          \n"

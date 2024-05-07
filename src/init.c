@@ -18,7 +18,7 @@ void init(void) {
 
     while (true) {
         if (wait(nullptr) < 0 && errno == ECHILD) {
-            printf("No process is available; init terminated\n");
+            fprintf(stderr, "No process is available; init terminated\n");
             reboot(REBOOT_TYPE_SHUTDOWN);
         }
     }

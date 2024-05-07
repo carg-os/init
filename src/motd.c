@@ -47,6 +47,4 @@ void print_motd(void) {
         }
         printf("%c", boot_msg[i]);
     }
-
-    return 0;
 }

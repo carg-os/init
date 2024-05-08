@@ -29,21 +29,25 @@ void print_motd(void) {
 "                                                                          \n";
     // clang-format on
 
+    char last = ' ';
     for (size_t i = 0; boot_msg[i] != '\0'; i++) {
-        switch (boot_msg[i]) {
-        case '=':
-        case ':':
-            printf("\x1B[0;90m");
-            break;
-        case '0':
-            printf("\x1B[0;36m");
-            break;
-        case '1':
-            printf("\x1B[0;33m");
-            break;
-        default:
-            printf("\x1B[0;0m");
-            break;
+        if (boot_msg[i] != last) {
+            switch (boot_msg[i]) {
+            case '=':
+            case ':':
+                printf("\x1B[0;90m");
+                break;
+            case '0':
+                printf("\x1B[0;36m");
+                break;
+            case '1':
+                printf("\x1B[0;33m");
+                break;
+            default:
+                printf("\x1B[0;0m");
+                break;
+            }
+            last = boot_msg[i];
         }
         printf("%c", boot_msg[i]);
     }

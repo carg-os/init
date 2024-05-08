@@ -8,4 +8,5 @@ int cmd_shell(int argc, char *argv[]) {
         _Exit(EXIT_FAILURE);
     }
     shell();
+    _Exit(EXIT_SUCCESS);
 }

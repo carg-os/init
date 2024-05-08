@@ -15,7 +15,7 @@ bool report(lua_State *l, int status) {
     return true;
 }
 
-[[noreturn]] void shell() {
+void shell(void) {
     print_motd();
 
     lua_State *l = luaL_newstate();
@@ -54,5 +54,5 @@ bool report(lua_State *l, int status) {
         }
     }
 
-    unreachable();
+    lua_close(l);
 }

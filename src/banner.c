@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-void print_motd(void) {
-    const char *boot_msg =
+void print_banner(void) {
+    const char *banner =
         // clang-format off
 "                                                                          \n"
 "  :=:=                                            =:=:                    \n"
@@ -30,9 +30,9 @@ void print_motd(void) {
     // clang-format on
 
     char last = ' ';
-    for (size_t i = 0; boot_msg[i] != '\0'; i++) {
-        if (boot_msg[i] != last) {
-            switch (boot_msg[i]) {
+    for (size_t i = 0; banner[i] != '\0'; i++) {
+        if (banner[i] != last) {
+            switch (banner[i]) {
             case '=':
             case ':':
                 printf("\x1B[0;90m");
@@ -47,8 +47,8 @@ void print_motd(void) {
                 printf("\x1B[0;0m");
                 break;
             }
-            last = boot_msg[i];
+            last = banner[i];
         }
-        printf("%c", boot_msg[i]);
+        printf("%c", banner[i]);
     }
 }

@@ -16,7 +16,7 @@ bool report(lua_State *l, int status) {
 }
 
 void shell(void) {
-    print_motd();
+    print_banner();
 
     lua_State *l = luaL_newstate();
     luaL_openlibs(l);

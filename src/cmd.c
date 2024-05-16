@@ -12,20 +12,20 @@ typedef struct {
     bool builtin;
 } cmd_t;
 
+int cmd_banner(int argc, char *argv[]);
 int cmd_clear(int argc, char *argv[]);
 int cmd_exit(int argc, char *argv[]);
 int cmd_getpid(int argc, char *argv[]);
 int cmd_help(int argc, char *argv[]);
-int cmd_motd(int argc, char *argv[]);
 int cmd_reboot(int argc, char *argv[]);
 int cmd_shell(int argc, char *argv[]);
 int cmd_shutdown(int argc, char *argv[]);
 int cmd_sleep(int argc, char *argv[]);
 
 static cmd_t CMDS[] = {
-    {"clear", cmd_clear, false},       {"exit", cmd_exit, true},
-    {"getpid", cmd_getpid, true},      {"help", cmd_help, false},
-    {"motd", cmd_motd, false},         {"reboot", cmd_reboot, false},
+    {"banner", cmd_banner, false},     {"clear", cmd_clear, false},
+    {"exit", cmd_exit, true},          {"getpid", cmd_getpid, true},
+    {"help", cmd_help, false},         {"reboot", cmd_reboot, false},
     {"shutdown", cmd_shutdown, false}, {"shell", cmd_shell, false},
     {"sleep", cmd_sleep, false},
 };

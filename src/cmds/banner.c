@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int cmd_motd(int argc, char *argv[]) {
+int cmd_banner(int argc, char *argv[]) {
     if (argc > 1) {
-        fprintf(stderr, "Usage: motd\n");
+        fprintf(stderr, "Usage: banner\n");
         _Exit(EXIT_FAILURE);
     }
-    print_motd();
+    print_banner();
     _Exit(EXIT_SUCCESS);
 }

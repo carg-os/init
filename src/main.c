@@ -1,3 +1,6 @@
 #include <shell.h>
 
-int main() { shell(); }
+int main() {
+    shell();
+    return 0;
+}

@@ -9,7 +9,6 @@
 void start();
 
 void init(void) {
-    printf("\e[1;1H\e[2J");
     printf("Booting up CargOS v%d.%d.%d...\n", VERSION_MAJOR, VERSION_MINOR,
            VERSION_PATCH);
 

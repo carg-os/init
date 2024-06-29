@@ -62,10 +62,10 @@ int cmd_exec(lua_State *l) {
     return 0;
 }
 
-void register_cmds(lua_State *l) {
+void register_cmds(lua_State *lua) {
     for (size_t i = 0; i < NR_CMDS; i++) {
-        lua_pushlightuserdata(l, &CMDS[i]);
-        lua_pushcclosure(l, cmd_exec, 1);
-        lua_setglobal(l, CMDS[i].name);
+        lua_pushlightuserdata(lua, &CMDS[i]);
+        lua_pushcclosure(lua, cmd_exec, 1);
+        lua_setglobal(lua, CMDS[i].name);
     }
 }

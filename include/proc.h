@@ -3,7 +3,7 @@
 #include <errno.h>
 #include <stddef.h>
 
-static inline int proc(void *entry, char *argv[]) {
+static inline int proc(void *entry, const char *argv[]) {
     register size_t a0 asm("a0") = (size_t) entry;
     register size_t a1 asm("a1") = (size_t) argv;
     register size_t a7 asm("a7") = 6;

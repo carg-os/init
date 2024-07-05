@@ -6,12 +6,9 @@
 #include <stdio.h>
 #include <string.h>
 
-static bool report(lua_State *lua, int status) {
-    if (status == LUA_OK)
-        return false;
+static void report(lua_State *lua) {
     fprintf(stderr, "\x1B[0;31m%s\x1B[0;0m\n", lua_tostring(lua, -1));
     lua_pop(lua, 1);
-    return true;
 }
 
 static bool push_line(lua_State *lua, bool first) {
@@ -97,10 +94,14 @@ void shell(void) {
         printf("\x1B[0;36m>\x1B[0;0m>\x1B[0;33m>\x1B[0;0m ");
 
         int status = load_line(lua);
-        report(lua, status);
+        if (status != LUA_OK) {
+            report(lua);
+            continue;
+        }
 
         status = lua_pcall(lua, 0, LUA_MULTRET, 0);
-        report(lua, status);
+        if (status != LUA_OK)
+            report(lua);
 
         int n = lua_gettop(lua);
         if (n > 0) {

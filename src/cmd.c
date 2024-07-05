@@ -33,32 +33,24 @@ static const size_t NR_CMDS = sizeof(CMDS) / sizeof(CMDS[0]);
 
 int cmd_exec(lua_State *l) {
     const cmd_t *cmd = lua_touserdata(l, lua_upvalueindex(1));
-
     int argc = lua_gettop(l) + 1;
-    char **argv = (char **) malloc(sizeof(char *) * (argc + 1));
-    argv[0] = strdup(cmd->name);
+    const char **argv = (const char **) malloc(sizeof(char *) * (argc + 1));
+    argv[0] = cmd->name;
     for (int i = 1; i < argc; i++) {
-        argv[i] = strdup(lua_tostring(l, i));
+        argv[i] = lua_tostring(l, i);
     }
     argv[argc] = nullptr;
-
     int status;
     if (cmd->builtin) {
-        status = cmd->func(argc, argv);
+        status = cmd->func(argc, (char **) argv);
     } else {
         pid_t pid = proc(cmd->func, argv);
         while (wait(&status) != pid)
             ;
     }
-
-    for (int i = 0; i < argc; i++) {
-        free(argv[i]);
-    }
     free(argv);
-
     if (status)
         printf("\x1B[0;31m%d\x1B[0;0m ", status);
-
     return 0;
 }
 

@@ -12,7 +12,7 @@ void init(void) {
     printf("Booting up CargOS v%d.%d.%d...\n", VERSION_MAJOR, VERSION_MINOR,
            VERSION_PATCH);
 
-    char *argv[] = {"shell", nullptr};
+    const char *argv[] = {"shell", nullptr};
     proc(start, argv);
 
     while (true) {

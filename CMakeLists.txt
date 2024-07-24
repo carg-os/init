@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.29)
 project(init C)
 
-add_library(init
+add_executable(init
     src/banner.c
     src/cmd.c
     src/cmds/banner.c
@@ -14,11 +14,11 @@ add_library(init
     src/cmds/shutdown.c
     src/cmds/sleep.c
     src/init.c
-    src/main.c
     src/shell.c
 )
 
 set_property(TARGET init PROPERTY C_STANDARD 23)
+set_property(TARGET init PROPERTY LINK_DEPENDS ${PROJECT_SOURCE_DIR}/linker.ld)
 target_compile_options(init PRIVATE
     -ffreestanding
     -mcmodel=medany
@@ -29,3 +29,4 @@ target_include_directories(init PRIVATE
     ${LUA_INCLUDE}
     include
 )
+target_link_options(init PRIVATE -nostdlib -T ${PROJECT_SOURCE_DIR}/linker.ld)
